@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<title>{% block title %}{{ title }}{% endblock %}</title>
+        <link rel="icon" href="{{ asset('img/favicon.png')}}" type="image.png">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    <body>
+		<header class="row">
+			<div class="col-md-3">
+				<img src="{{ asset('img/logo.png') }}" alt="mon logo" class="img-fluid">
+			</div>
+			<div class="col-md-9">
+				<h1>Ma boutique Symfony</h1>
+			</div>
+		</header>
+		<div class="container principal">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<a class="navbar-brand" href="{{ url('index') }}">
+					<i class="fas fa-home"></i>Accueil
+				</a>
+				<button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#menu" aria-controls="navbarSupportedContent">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="menu">
+					{# appel d'un controleur spécifique #}
+					{#{{ render(controller('App\\Controller\\MenuController::navbar')) }}#}
+					<div class="nav navbar-nav">
+						<a class="nav-item nav-link" href="{{ path('produits_cat', {cat:1} ) }}">Pantalons</a>
+						<a class="nav-item nav-link" href="{{ path('produits_cat', {cat:2} ) }}">Vestes</a>
+						{% if app.user %}
+						<a class="nav-item nav-link" href="{{ path('panier') }}">Panier</a>
+						<a class="nav-item nav-link" href="{{ path('app_logout') }}">Logout</a>
+						{% else %}
+						<a class="nav-item nav-link" href="{{ path('app_login') }}">Login</a>
+						<a class="nav-item nav-link" href="{{ path('app_register') }}">Sign up</a>
+						{% endif %}
+					</div>
+				</div> <!-- fin collapse -->
+			</nav>
+			<div class="row">
+				{% block body %}{% endblock %}
+			</div>
+        </div> <!-- fin container --> 
+		<footer class="row">
+			<p class="col-md-6">
+				Copyright &copy; Moi 2018
+			</p>
+			<p class="col-md-6">
+				<a href="{{ url('mentions') }}">
+					Mentions légales
+				</a>
+			</p>
+		</footer>
+		<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+		{% block javascripts %}{% endblock %}
+		
+    </body>
+</html>

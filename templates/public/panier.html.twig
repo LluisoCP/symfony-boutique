@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+    <table class="table table-striped">
+        <thead>
+            <tr class="text-center">
+                <th>Date</th>
+                <th>Article</th>
+                <th>Prix Unitaire</th>
+                <th>Quantité</th>
+                <th>Montant</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% set total = 0 %}
+            {% for panier in paniers %}
+                {% set total = total + (panier.produit.prix * panier.quantite) %}
+                <tr class="text-center">
+                    <td class="align-middle">{{ panier.datePanier|date('H:i d/m/Y') }}</td>
+                    <td class="align-middle">{{ panier.produit.nom }}</td>
+                    <td class="align-middle">{{ panier.produit.prix }}€</td>
+                    <td class="align-middle">
+                        <div class="row">
+                            <input id="q{{ panier.id }}" class="text-center form-control col-4 offset-2 col-form-label" type="number" value="{{ panier.quantite }}" min="0" max="{{ panier.produit.stock }}">
+                            <div class="col-4">
+                                <button id="m{{ panier.id }}" class="btn btn-warning"><i class="fas fa-edit"></i></button>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="align-middle">{{ panier.produit.prix * panier.quantite }}€</td>
+                    <td class="align-middle">
+                        <button id="s{{ panier.id }}" class="btn btn-danger delete-order"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+            {% else %}
+                <p class="bg-warning">Votre panier est vide.</p>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr class="text-center">
+                <th colspan="4">&nbsp;</th>
+                <th>Total</th>
+                <td>{{ total }}€</td>
+            </tr>
+        </tfoot>
+    </table>
+{% endblock %}
+
+
+{% block javascripts %}
+    <script src="{{ asset('js/script.js') }}"></script>
+{% endblock %}

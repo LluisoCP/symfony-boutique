@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block body %}
+
+<div class="col-8 offset-2">
+    <h2 class="text-center">{{ title }}</h2>
+    <ul class="list-group">
+        {% for produit in produits %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            {{ produit.nom }} / {{ produit.prix }}€ : {{ produit.description }}
+            <span class="badge badge-primary badge-pill">{{ produit.stock }}</span>
+        </li>
+            {% if produit.stock %}
+            <li class="list-group-item d-flex justify-content-center align-items-center">
+                {% if app.user %}
+                    
+                    <form method="POST" action="{{ path('ajout_panier') }}">
+                        <div class="form-group row mb-0">
+                            <label class="text-right col-4 col-form-label" for="quantite">Quantité</label>
+                            <div  class="col-4">
+                                <input id="quantite" name="quantite" type="number" class="form-control">
+                            </div>
+                            <div  class="col-4">
+                                <input class="btn btn-success" type="submit" value="Commander">
+                            </div>
+                        </div>
+                        <input type="hidden" name="id" value="{{ produit.id }}">
+                    </form>
+                {% else %}
+                    <p class="text-center mb-0"><a href="{{ path('app_login') }}">Indentifiez-vous</a> ou <a href="{{ path('app_register') }}">enregistrez-vous</a> pour commander des produits</p>
+                {% endif %}
+            </li>
+            {% else %}
+            <li class="list-group-item d-flex justify-content-center align-items-center">
+                Ce produit est épouisé
+            </li>            
+            {% endif %}
+        {% else %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Dessolé, nous n'avons pas de produits dans cette catégorie!
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

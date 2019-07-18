@@ -1,0 +1,33 @@
+.form-check-input
+{
+	margin-left: 10px;
+}
+.form-check-input label
+{
+	margin-left: 8px;
+	margin-right: 8px;
+}
+/* container principal */
+.principal
+{
+	padding-bottom: 80px;
+}
+/* pied de page fixe */ 
+footer
+{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	background-color: #031926;
+	color: #9DBEBB;
+	text-align: center;
+}
+/* carte google maps page contact */
+#map
+{
+	width: 100%;
+	height: 600px;
+}
