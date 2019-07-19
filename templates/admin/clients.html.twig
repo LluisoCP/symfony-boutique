@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="col-8 offset-2">
+
+    <h1 class="text-center"></h1>
+    
+    <table class="table">
+        <thead>
+            <tr class="text-center">
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>E-mail</th>
+                <th>Adresse</th>
+                <th>Code Postal</th>
+                <th>Ville</th>
+                <th>Téléphone</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in clients %}
+            <tr class="text-center">
+                <td>{{ client.nom }}</td>
+                <td>{{ client.prenom }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.adresse }}</td>
+                <td>{{ client.cp }}</td>
+                <td>{{ client.ville }}</td>
+                <td>{{ client.telephone }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

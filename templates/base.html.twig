@@ -29,8 +29,8 @@
 				</button>
 				<div class="collapse navbar-collapse" id="menu">
 					{# appel d'un controleur spécifique #}
-					{#{{ render(controller('App\\Controller\\MenuController::navbar')) }}#}
-					<div class="nav navbar-nav">
+					{{ render(controller('App\\Controller\\MenuController::navbar')) }}
+					{#<div class="nav navbar-nav">
 						<a class="nav-item nav-link" href="{{ path('produits_cat', {cat:1} ) }}">Pantalons</a>
 						<a class="nav-item nav-link" href="{{ path('produits_cat', {cat:2} ) }}">Vestes</a>
 						{% if app.user %}
@@ -40,7 +40,7 @@
 						<a class="nav-item nav-link" href="{{ path('app_login') }}">Login</a>
 						<a class="nav-item nav-link" href="{{ path('app_register') }}">Sign up</a>
 						{% endif %}
-					</div>
+					</div>#}
 				</div> <!-- fin collapse -->
 			</nav>
 			<div class="row">

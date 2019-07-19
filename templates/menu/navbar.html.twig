@@ -1,0 +1,35 @@
+{% if app.user %}
+    <span class="navbar-text">
+        Bienvenu {{ app.user.prenom }} {{ app.user.nom }}
+    </span>
+{% endif %}
+    <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item">
+            <a  href="{{ path('index') }}"
+                class="nav-link dropdown-toggle"
+                href=""
+                id="navbarDropdown"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                role="button"
+                aria-expanded="false"
+            ><i class="fas fa-clipboard-list"></i> Catégories
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                {% for categorie in categories %}
+                    <a href="{{ path('produits_categorie', {cat: categorie.libelle}) }}" class="dropdown-item">
+                        {{ categorie.libelle }}
+                    </a>
+                {% endfor %}
+
+            </div>
+        </li>
+        {% for lien in liens %}
+            <li class="nav-item">
+                <a href="{{ path(lien.href) }}" class="nav-link">
+                    <i class="{{ lien.icon }}"></i> {{ lien.lib }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
