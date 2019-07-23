@@ -76,10 +76,10 @@ class PublicController extends AbstractController
     /**
      * @Route("/ajout_panier", name="ajout_panier", methods={"POST"})
      */
-    public function ajoutPanier(Request $request, ProduitRepository $repository)
+    public function ajoutPanier(Request $request, ProduitRepository $produit_repository)
     {
         $utilisateur = $this->getUser();
-        $article = $repository->find($request->request->get('id'));
+        $article = $produit_repository->find($request->request->get('id'));
         $date = new \DateTime();
         $panier = new Panier;
         // dump($utilisateur, $date, $article, $panier);
