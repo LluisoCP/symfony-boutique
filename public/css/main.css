@@ -40,3 +40,16 @@ footer
 #menu .navbar-item.show {
 	position: relative;
 }
+#flash-success {
+	min-height: 200px;
+	min-width: 500px;
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 50;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* transform: translate(-50%, -50%); */
+}

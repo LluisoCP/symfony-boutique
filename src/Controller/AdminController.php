@@ -10,6 +10,7 @@ use App\Services\MonUpload;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Repository\ClientRepository;
 use App\Form\ProduitType;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 /**
  * @isGranted("ROLE_ADMIN")
@@ -35,9 +36,14 @@ class AdminController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($produit);
             $em->flush();
+
+            // $session = new Session();
+            // $session->start();
+            // $session->getFlashBag()->add('success', 'You\'re cart has been updated with your new command.');
             return $this->redirectToRoute('index');
         }
-
+        
+        
 
         return $this->render('admin/ajoutProduit.html.twig', [
             'title' => 'Ajouter un produit',

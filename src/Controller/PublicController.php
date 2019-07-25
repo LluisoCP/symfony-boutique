@@ -110,6 +110,7 @@ class PublicController extends AbstractController
             $em->persist($panier);
             $em->flush();
         }
+        $this->addFlash('success', 'You\'re cart has been updated with your new command.');
         return $this->redirectToRoute('panier');
     }
 
