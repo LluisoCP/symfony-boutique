@@ -76,22 +76,41 @@ class PublicController extends AbstractController
     /**
      * @Route("/ajout_panier", name="ajout_panier", methods={"POST"})
      */
-    public function ajoutPanier(Request $request, ProduitRepository $produit_repository)
+    public function ajoutPanier(Request $request, ProduitRepository $produit_repository, PanierRepository $panier_repository)
     {
-        $utilisateur = $this->getUser();
-        $article = $produit_repository->find($request->request->get('id'));
-        $date = new \DateTime();
-        $panier = new Panier;
-        // dump($utilisateur, $date, $article, $panier);
-        $panier->setClient($utilisateur);
-        $panier->setProduit($article);
-        $panier->setQuantite($request->request->get('quantite'));
-        $panier->setDatepanier($date);
-        // dd($panier);
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($panier);
-        $em->flush();
-        return $this->redirectToRoute('produits');
+        $utilisateur = $this->getUser(); // User
+        $utilisateurId = $utilisateur->getId(); //User ID
+        $article = $produit_repository->find($request->request->get('id')); //Product
+        $articleId = $article->getId(); //Product ID
+        // dump($utilisateur);
+        // dd($article);
+        $ajout = $request->request->get('quantite'); // Quantity
+        $date = new \DateTime(); //Date of modification
+
+        $em = $this->getDoctrine()->getManager(); // Get entity manager
+
+        // $panier = $panier_repository->findPanierByClientAndProduct($utilisateurId, $articleId); //Has the user a cart with this product?
+        $panier = $panier_repository->findPanierByClientAndProduct($utilisateur, $article); //Has the user a cart with this product?
+        if (isset($panier))  // If so, modify the quantity of the existing cart, update date.
+        {
+            $quantite = $panier->getQuantite();
+            $panier->setQuantite($quantite + $ajout);
+            $panier->setDatepanier($date);
+            $em->flush();
+        }
+        else // Else, create a new cart, assign all values (quantity, user, product, date)
+        {
+            $panier = new Panier;
+            // dump($utilisateur, $date, $article, $panier);
+            $panier->setClient($utilisateur);
+            $panier->setProduit($article);
+            $panier->setQuantite($ajout);
+            $panier->setDatepanier($date);
+            // dd($panier);
+            $em->persist($panier);
+            $em->flush();
+        }
+        return $this->redirectToRoute('panier');
     }
 
     /**

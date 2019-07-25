@@ -31,10 +31,12 @@ footer
 	width: 100%;
 	height: 600px;
 }
-
-#menu .navbar-item {
+#salutation {
+	color: red;
+}
+#dropdownContainer {
 	position: relative;
 }
-/* #menu .navbar-item {
+#menu .navbar-item.show {
 	position: relative;
-} */
+}

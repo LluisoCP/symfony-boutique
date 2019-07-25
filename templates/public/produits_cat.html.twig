@@ -22,7 +22,7 @@
                         <div class="form-group row mb-0">
                             <label class="text-right col-4 col-form-label" for="quantite">Quantité</label>
                             <div  class="col-4">
-                                <input id="quantite" name="quantite" type="number" class="form-control">
+                                <input id="quantite" name="quantite" type="number" min="1" max="{{ produit.stock }}" class="form-control">
                             </div>
                             <div  class="col-4">
                                 <input class="btn btn-success" type="submit" value="Commander">

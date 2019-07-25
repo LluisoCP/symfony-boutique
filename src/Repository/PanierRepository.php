@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\Panier;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Entity\Client;
+use App\Entity\Produit;
 
 /**
  * @method Panier|null find($id, $lockMode = null, $lockVersion = null)
@@ -36,15 +38,26 @@ class PanierRepository extends ServiceEntityRepository
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Panier
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+    public function findPanierByClientAndProduct (Client $client, Produit $produit): ? Panier {
+    return $this->createQueryBuilder('p')
+        ->andWhere('p.client = :cli')
+        ->setParameter('cli', $client)
+        ->andWhere('p.produit = :pro')
+        ->setParameter('pro', $produit)
+        ->getQuery()
+        ->getOneOrNullResult();
+}
+    
+    // public function findPanierByClientAndProduct($clientId, $produitId): ?Panier
+    // {
+    //     return $this->createQueryBuilder('p')
+    //         ->andWhere('p.client_id = :cli')
+    //         ->setParameter('cli', $clientId)
+    //         ->andWhere('p.produit_id = :pro')
+    //         ->setParameter('pro', $produitId)
+    //         ->getQuery()
+    //         ->getOneOrNullResult()
+    //     ;
+    // }
+    
 }

@@ -14,10 +14,10 @@ class MenuController extends AbstractController
         if ($auth->isGranted("ROLE_ADMIN"))
         {
             $liens = [
-                ['href' => 'clients',       'lib' => 'Clients',         'icon' => 'fas fa-user'],
+                ['href' => 'clients',        'lib' => 'Clients',         'icon' => 'fas fa-user'],
                 ['href' => 'ajout_produit',  'lib' => 'Ajout Produit',   'icon' => 'fas fa-plus-circle'],
-                ['href' => 'app_logout',    'lib' => 'Logout',          'icon' => 'fas fa-power-off'],
-                ['href' => 'produits',      'lib' => 'Produits',        'icon' => 'fab fa-product-hunt']
+                ['href' => 'app_logout',     'lib' => 'Logout',          'icon' => 'fas fa-power-off'],
+                ['href' => 'produits',       'lib' => 'Produits',        'icon' => 'fab fa-product-hunt']
 
 
             ];
@@ -25,7 +25,7 @@ class MenuController extends AbstractController
         else if ($auth->isGranted("ROLE_USER"))
         {
             $liens = [
-                ['href' => 'panier',        'lib' => 'Mon Panier',      'icon' => 'fas fa-shopping-basquet'],
+                ['href' => 'panier',        'lib' => 'Mon Panier',      'icon' => 'fas fa-shopping-cart'],
                 ['href' => 'app_logout',    'lib' => 'Logout',          'icon' => 'fas fa-power-off'],
                 ['href' => 'produits',      'lib' => 'Produits',        'icon' => 'fab fa-product-hunt'],
                 // ['href' => 'contact',       'lib' => 'Contact',         'icon' => 'fas fa-plus-circle']
@@ -37,6 +37,7 @@ class MenuController extends AbstractController
                 ['href' => 'app_login',     'lib' => 'Login',           'icon' => 'fas fa-sign-in-alt'],
                 ['href' => 'app_register',  'lib' => 'Sign Up',         'icon' => 'fas fa-user-plus'],
                 ['href' => 'produits',      'lib' => 'Produits',        'icon' => 'fab fa-product-hunt'],
+                ['href' => 'panier',        'lib' => 'Panier',          'icon' => 'fas fa-shopping-basket'],
                 ['href' => 'app_logout',    'lib' => 'Logout',          'icon' => 'fas fa-power-off']
                 // ['href' => 'contact',       'lib' => 'Contact',         'icon' => 'fas fa-plus-circle']
 

@@ -1,11 +1,11 @@
 {% if app.user %}
-    <span class="navbar-text">
-        Bienvenu {{ app.user.prenom }} {{ app.user.nom }}
+    <span class="navbar-text" id="salutation">
+        Bienvenue {{ app.user.prenom }} {{ app.user.nom }}
     </span>
 {% endif %}
     <ul class="navbar-nav mr-auto">
 
-        <li class="nav-item">
+        <li class="nav-item" id="dropdownContainer">
             <a  href="{{ path('index') }}"
                 class="nav-link dropdown-toggle"
                 href=""
@@ -14,7 +14,8 @@
                 aria-haspopup="true"
                 role="button"
                 aria-expanded="false"
-            ><i class="fas fa-clipboard-list"></i> Catégories
+            >
+                <i class="fas fa-clipboard-list"></i> Catégories
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 {% for categorie in categories %}
